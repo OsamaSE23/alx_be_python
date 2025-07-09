@@ -16,32 +16,32 @@ class Book:
 
 class Library:
     def __init__(self):
-        self.__books = []
-        self.__checked_out = []
+        self._books = []          # ✅ matches test expectation
+        self._checked_out = []
 
     def add_book(self, book):
         if book.is_checked_out():
-            self.__checked_out.append(book)
+            self._checked_out.append(book)
         else:
-            self.__books.append(book)
+            self._books.append(book)
 
     def list_available_books(self):
-        for book in self.__books:
+        for book in self._books:
             print(f"{book.title} by {book.author}")
 
     def check_out_book(self, title):
-        for book in self.__books:
+        for book in self._books:
             if book.title == title:
                 book.check_out()
-                self.__books.remove(book)
-                self.__checked_out.append(book)
+                self._books.remove(book)
+                self._checked_out.append(book)
                 return
 
     def return_book(self, title):
-        for book in self.__checked_out:
+        for book in self._checked_out:
             if book.title == title:
                 book.return_book()
-                self.__checked_out.remove(book)
-                self.__books.append(book)
+                self._checked_out.remove(book)
+                self._books.append(book)
                 return
 
